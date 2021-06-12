@@ -111,4 +111,7 @@ def test_prompt(capsys, monkeypatch):
     val = start_game()
     assert not val
 
-start_game()
+
+
+if __name__ == '__main__':
+    start_game()
