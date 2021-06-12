@@ -23,13 +23,12 @@ def read_template(file_name):
     Returns:
         String of all countent of ifle 
     """
- 
     try:
         with open(file_name) as file:
-          content_text=file.read()
-    except IOError:
-        print('Please make sure of the path of file yo have provided!!')
-        return
+            content_text=file.read()             
+    except Exception:             
+        raise FileNotFoundError("missing.txt")      
+
     return content_text
 
 
@@ -107,6 +106,9 @@ def start_game():
     save(merge(content_of_file[0],map(read_from_user,content_of_file[1])))
    
 
-
+def test_prompt(capsys, monkeypatch):
+    monkeypatch.setattr('path.to.yourmodule.input', lambda: 'no')
+    val = start_game()
+    assert not val
 
 start_game()
